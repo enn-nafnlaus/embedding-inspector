@@ -10,7 +10,7 @@ from modules.shared import cmd_opts
 import torch, os
 from modules.textual_inversion.textual_inversion import Embedding
 import math, random
-from embedding_solver import EmbeddingGroupFinder
+from scripts.embedding_solver import EmbeddingGroupFinder
 
 MAX_TABS = 20	# max number of tokens to save per embedding.
 MAX_NUM_MIX = 100 # number of tokens that can be mixed to make a new token.
@@ -608,14 +608,14 @@ def add_tab():
                                    mix_inputs.append(gr.Textbox(label="Name "+str(n), lines=1, placeholder="Enter name of token/embedding or ID"))
                                with gr.Column():
                                    mix_sliders.append(gr.Slider(label="Multiplier",value=1.0,minimum=-1.0, maximum=1.0, step=0.1))
-                          if MAX_NUM_MIX>SHOW_NUM_MIX:
+                        if MAX_NUM_MIX>SHOW_NUM_MIX:
                             with gr.Accordion('',open=False):
                                 for n in range(SHOW_NUM_MIX,MAX_NUM_MIX):
                                     tab.add_row(gr.Row())
                                     with tab.rows[-1]:
                                         with gr.Column():
                                            mix_inputs.append(gr.Textbox(label="Name "+str(n), lines=1, placeholder="Enter name of token/embedding or ID"))
-                                       with gr.Column():
+                                        with gr.Column():
                                            mix_sliders.append(gr.Slider(label="Multiplier",value=1.0,minimum=-1.0, maximum=1.0, step=0.1))
 
                     with gr.Row():

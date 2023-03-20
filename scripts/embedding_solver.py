@@ -242,7 +242,7 @@ class EmbeddingGroupFinder:
     for best_emb_groups, iterations in best_emb_groups_list:
       if best_emb_groups is None:
         continue
-      self.textbox += f"\n\n%0.1f :: Iteration: {iterations}\n" % (time.time() - self.start_time))
+      self.textbox += f"\n\n%0.1f :: Iteration: {iterations}\n" % (time.time() - self.start_time)
       for subset_id in [len(best_emb_groups) - 1]:
         subset = best_emb_groups[subset_id]
         if len(subset) == 0:
@@ -256,7 +256,7 @@ class EmbeddingGroupFinder:
           self.mix_sliders.append(weight)
           self.textbox += f" {weight} * {mapped_emb_id}: {emb_id_to_name(int(mapped_emb_id), self.tokenizer)}\n\n"
         if partial == True:
-          return self.textbox += "---------------------------------\n\n"
+          return self.textbox + "---------------------------------\n\n"
         s = sorted(self.target_emb)
         rel_diff = s[int(0.75 * len(self.target_emb))] - s[int(0.25 * len(self.target_emb) )]
         self.textbox += f"this_emb: {group_vec.detach().numpy()}\n"
@@ -325,7 +325,7 @@ class EmbeddingGroupFinder:
     t = t.lower()
     try:
       if t[-1] == "*":
-        return self.orig_to_sorted[text_to_emb_ids([t[:-1]]]
+        return self.orig_to_sorted[text_to_emb_ids([t[:-1]])]
       else:
         return self.orig_to_sorted[text_to_emb_ids(t + "</w>", self.tokenizer)]
     except KeyError:
@@ -442,7 +442,7 @@ class EmbeddingGroupFinder:
       best_optimization_records = [ (self.optimization_records[key], key) for key in self.optimization_records ]
       best_optimization_records.sort()
       for rec, key in best_optimization_records:
-        self.textbox += "*/t=%0.7f (%s), #=%d, t=%0.1f\n" % (rec[0], key, rec[1], rec[2]))
+        self.textbox += "*/t=%0.7f (%s), #=%d, t=%0.1f\n" % (rec[0], key, rec[1], rec[2])
       self.textbox += "\n"
       self.last_printed_optimization_time = cur_time
         
@@ -483,7 +483,7 @@ class EmbeddingGroupFinder:
 
     while self.emb_id < len(self.target_embs):
       t = self.target_embs[self.emb_id]
-      self.textbox += f"\n === Embedding # {self.emb_id+1} / {len(self.target_embs)} === \n\n")
+      self.textbox += f"\n === Embedding # {self.emb_id+1} / {len(self.target_embs)} === \n\n"
       
 #      if not self.do_resume:
       self.set_target(t)
@@ -596,7 +596,7 @@ class EmbeddingGroupFinder:
         self.save_near_emb_cache()
 
       if len(to_precache) > 0:
-        self.textbox += self.time_str() + f"<Finding neighbors to {to_precache[0]} -> {emb_id_to_name(to_precache[0, self.tokenizer)]}>                        \r"
+        self.textbox += self.time_str() + f"<Finding neighbors to {to_precache[0]} -> {emb_id_to_name(to_precache[0, self.tokenizer])}>                        \r"
         self.near_emb_cache[to_precache[0]] = self.find_near_embs(self.orig_all_embs[to_precache[0]])
         to_precache = to_precache[1:]
         if len(to_precache) == 0:
